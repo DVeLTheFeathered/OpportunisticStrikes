@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ToolCapacityDef>
+		<defName>DVeL_AoO_AttackOfOpportunity</defName>
+		<label>Attack of Opportunity</label>
+	</ToolCapacityDef>
+
+	<ManeuverDef>
+		<defName>DVeL_AoO_AttackOfOpportunityManeuver</defName>
+		<requiredCapacity>DVeL_AoO_AttackOfOpportunity</requiredCapacity>
+		<verb>
+			<verbClass>TestMod.Verb_AttackOfOpportunity</verbClass>
+			<meleeDamageDef>Cut</meleeDamageDef>
+			<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+			<isPrimary>false</isPrimary>
+			<commonality>0</commonality>
+		</verb>
+		<logEntryDef>DVeL_AoO_MeleeAttackCombo</logEntryDef>
+		<combatLogRulesHit>Maneuver_Slash_MeleeHit</combatLogRulesHit>
+		<combatLogRulesDeflect>Maneuver_Slash_MeleeDeflect</combatLogRulesDeflect>
+		<combatLogRulesMiss>Maneuver_Slash_MeleeMiss</combatLogRulesMiss>
+		<combatLogRulesDodge>Maneuver_Slash_MeleeDodge</combatLogRulesDodge>
+	</ManeuverDef>
+
+
+</Defs>
