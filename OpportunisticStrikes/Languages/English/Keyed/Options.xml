@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<OpportunisticStrikesModName>Opportunistic Strikes</OpportunisticStrikesModName>
+	<NewValueReloadRequiredWarning>Reloading Rimworld is required for new value to be applied</NewValueReloadRequiredWarning>
+	
+	<TicksBetweenOSVerbsDescription>Ticks between verbs in combo:</TicksBetweenOSVerbsDescription>
+	<TicksBetweenOSVerbsTooltip>One second is 60 ticks</TicksBetweenOSVerbsTooltip>
+	
+	<YourAttackInterruptionsDescription>Which of your melee attack results interrupt your attack combo:</YourAttackInterruptionsDescription>
+	<InterruptionMiss>Miss</InterruptionMiss>
+	<InterruptionDodge>Dodge</InterruptionDodge>
+	<InterruptionDeflect>Deflect</InterruptionDeflect>
+
+	<VerbChanceDescription>Chance to add each individual verb to a combo based on Melee Skill:</VerbChanceDescription>
+	<VerbChanceTooltip>Actual chance will be linearly interpolated between these values</VerbChanceTooltip>
+	<VerbChanceAtMelee0Description>Level 0: </VerbChanceAtMelee0Description>
+	<VerbChanceAtMelee20Description>Level 20:</VerbChanceAtMelee20Description>
+
+	<IgnoreTooFastAttacksDescription>Disable "Opportunistic Strikes" for attacks that are too fast:</IgnoreTooFastAttacksDescription>
+	<WhatIsTooFastDescription>Attack is too fast if it has a lower cooldown than ("Ticks between verbs in combo" x Multiplier) </WhatIsTooFastDescription>
+	<MultDescription>Mult: </MultDescription>
+
+
+</LanguageData>

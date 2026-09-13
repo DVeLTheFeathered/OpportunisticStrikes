@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A02F11B6-B9A9-4584-8B51-D65B271FDFA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpportunisticStrikes</RootNamespace>
+    <AssemblyName>OpportunisticStrikes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\Mods\$(MSBuildProjectName)\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\Mods\$(MSBuildProjectName)\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\CachedValues.cs" />
+    <Compile Include="Source\Extensions.cs" />
+    <Compile Include="Source\HarmonyPatches\BattleLogEntry_MeleeCombat\GenerateGrammarRequestPatch.cs" />
+    <Compile Include="Source\HarmonyPatches\HarmonyInstance.cs" />
+    <Compile Include="Source\HarmonyPatches\Verb\TryCastNextBurstShotPatch.cs" />
+    <Compile Include="Source\HarmonyPatches\Verb_MeleeAttack\CreateCombatLogPatch.cs" />
+    <Compile Include="Source\HarmonyPatches\Verb_MeleeAttack\TryCastShotPatch.cs" />
+    <Compile Include="Source\MeleeAttackResult.cs" />
+    <Compile Include="Source\Settings\ModInit.cs" />
+    <Compile Include="Source\Settings\OSMod.cs" />
+    <Compile Include="Source\Settings\OSSettings.cs" />
+    <Compile Include="Source\Stance_CooldownWithFollowUp.cs" />
+    <Compile Include="Source\Stats\StatWorker_OSDPS.cs" />
+    <Compile Include="Source\Verb_OpportunisticStrike.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About\About.xml" />
+    <Content Include="About\Preview.png" />
+    <Content Include="Defs\OpportunisticStrikes.xml" />
+    <Content Include="Defs\LogEntryDef.xml" />
+    <Content Include="Defs\Stats\OSDPS.xml" />
+    <Content Include="Defs\Stats\AvailableVerbs.xml" />
+    <Content Include="Languages\English\DefInjected\StatDef\OSDPS.xml" />
+    <Content Include="Languages\English\Keyed\Options.xml" />
+    <Content Include="Languages\English\DefInjected\ToolCapacityDef\OpportunisticStrikes.xml" />
+    <Content Include="Languages\Russian\Keyed\Options.xml" />
+    <Content Include="Languages\Russian\DefInjected\ToolCapacityDef\OpportunisticStrikes.xml" />
+    <Content Include="Patches\HumanAttackToolsPatch.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Languages\English\DefInjected\ThingDef\" />
+    <Folder Include="Textures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="About\**\*" />
+    <Content Include="About\**\*">
+      <TargetPath>..\About\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Remove="Defs\**\*" />
+    <Content Include="Defs\LogEntryDef.xml">
+      <TargetPath>..\Defs\LogEntryDef.xml</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Defs\OpportunisticStrikes.xml">
+      <TargetPath>..\Defs\OpportunisticStrikes.xml</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Defs\Stats\OSDPS.xml">
+      <TargetPath>..\Defs\Stats\OSDPS.xml</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Remove="Languages\**\*" />
+    <Content Include="Languages\**\*">
+      <TargetPath>..\Languages\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Remove="Patches\**\*" />
+    <Content Include="Patches\**\*">
+      <TargetPath>..\Patches\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Remove="Textures\**\*" />
+    <Content Include="Textures\**\*">
+      <TargetPath>..\Textures\%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpportunisticStrikes.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DVeLsCommonLibrary\DVeLsCommonLibrary\DVeLsCommonLibrary.csproj">
+      <Project>{c62f82f0-b241-43ed-aad8-4b60a704d7c9}</Project>
+      <Name>DVeLsCommonLibrary</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
