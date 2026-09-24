@@ -8,6 +8,7 @@ namespace OpportunisticStrikes.Settings
         static ModInit()
         {
             OSSettings.RecalculateSettings();
+            CachedValues.InitializeCachedValues();
         }
     }
 }

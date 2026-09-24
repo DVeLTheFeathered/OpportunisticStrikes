@@ -45,9 +45,6 @@ namespace OpportunisticStrikes
 
         public void FollowUpLogic(Verb_MeleeAttack initiatingVerb)
         {
-            // TODO do not forget to add Language to defaul rimworld project
-
-            // TODO should moving pawn counterattack?
             Log.Message($"Verb_OpportunisticStrike.FollowUpLogic: {initiatingVerb}");
             if (comboIsFinished) { // Finalize AoO if it was the last verb of combo
                 Log.Message($"Verb_OpportunisticStrike.FollowUpLogic: Finalizing AoA");
@@ -72,7 +69,7 @@ namespace OpportunisticStrikes
             RerollVerbs(initiatingVerb);
             if (verbs.Count == 0) return false;
             originalStance = CasterPawn.stances.curStance;
-            // Stance_Warmup can be interrupted by player, resetting cooldown.
+            // Stance_Warmup can be interrupted by player, resetting cooldown. So had to make custom one.
             CasterPawn.stances.SetStance(new Stance_CooldownWithFollowUp(TicksBetweenBurstShots, initiatingVerb.CurrentTarget, this));
             Log.Message($"Verb_OpportunisticStrike.TryStartFollowUp: {CasterPawn}. " +
                         $"Chance: {OSSettings.VerbChanceFromSkill(CasterPawn.skills?.GetSkill(SkillDefOf.Melee)?.GetLevel() ?? 0)}%. " +
@@ -85,7 +82,13 @@ namespace OpportunisticStrikes
         {
              verbs = CasterPawn.meleeVerbs.GetUpdatedAvailableVerbsList(false)
                 .Select(x => x.verb as Verb_MeleeAttack)
-                .Where(x=> x != null && x != initiatingVerb && Rand.Chance(x.VerbChanceInCombo()))
+                .Where(x=> 
+                    x != null
+                    && x != initiatingVerb
+                    && Rand.Chance(
+                        x.VerbChanceInCombo()
+                        * OSSettings.VerbChanceNormalizedMult(initiatingVerb.verbProps.AdjustedCooldownTicks(initiatingVerb, initiatingVerb.CasterPawn)))
+                    )
                 .OrderBy(x => Guid.NewGuid()) // randomise order
                 .ToList();
         }

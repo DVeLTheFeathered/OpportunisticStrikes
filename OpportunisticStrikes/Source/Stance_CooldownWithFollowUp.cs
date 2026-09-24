@@ -4,7 +4,6 @@ namespace OpportunisticStrikes
 {
     internal class Stance_CooldownWithFollowUp : Stance_Cooldown
     {
-
         public Stance_CooldownWithFollowUp()
         {
         }
