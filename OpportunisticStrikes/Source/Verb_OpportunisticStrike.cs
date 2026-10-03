@@ -39,15 +39,12 @@ namespace OpportunisticStrikes
                 && !OSSettings.InterruptingResult(pawnLastAttackResult);
             attacksMade++;
             comboIsFinished = !successfulHit || AttacksRemaining == 0;
-            Log.Message($"Verb_OpportunisticStrike.TryCastShot. {CasterPawn} used attack №{attacksMade}: {verb}. Result: {pawnLastAttackResult}. comboIsFinished: {comboIsFinished}");
             return successfulHit;
         }
 
         public void FollowUpLogic(Verb_MeleeAttack initiatingVerb)
         {
-            Log.Message($"Verb_OpportunisticStrike.FollowUpLogic: {initiatingVerb}");
             if (comboIsFinished) { // Finalize AoO if it was the last verb of combo
-                Log.Message($"Verb_OpportunisticStrike.FollowUpLogic: Finalizing AoA");
                 if (!(originalStance is null)) CasterPawn.stances.SetStance(originalStance); // cooldown of combo is cooldown of initiating attack
                 Reset();
                 return;
@@ -71,10 +68,6 @@ namespace OpportunisticStrikes
             originalStance = CasterPawn.stances.curStance;
             // Stance_Warmup can be interrupted by player, resetting cooldown. So had to make custom one.
             CasterPawn.stances.SetStance(new Stance_CooldownWithFollowUp(TicksBetweenBurstShots, initiatingVerb.CurrentTarget, this));
-            Log.Message($"Verb_OpportunisticStrike.TryStartFollowUp: {CasterPawn}. " +
-                        $"Chance: {OSSettings.VerbChanceFromSkill(CasterPawn.skills?.GetSkill(SkillDefOf.Melee)?.GetLevel() ?? 0)}%. " +
-                        $"Verbs: {verbs.Count}. " +
-                        $"Initiated by {initiatingVerb}");
             return true;
         }
 

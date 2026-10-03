@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<ColumnHeader_Chance>Шанс</ColumnHeader_Chance>
+	<ColumnHeader_Damage>Урон</ColumnHeader_Damage>
+	<ColumnHeader_Tool>Оружие</ColumnHeader_Tool>
+	<ColumnHeader_Source>Источник</ColumnHeader_Source>
+
+	<SourceType_Hediff>Здоровье</SourceType_Hediff>
+	<SourceType_Equipment>Снаряжение</SourceType_Equipment>
+	<SourceType_Body>Тело</SourceType_Body>
+	<SourceType_Unknown>Неизвестно</SourceType_Unknown>
+</LanguageData>

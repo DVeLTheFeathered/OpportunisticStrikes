@@ -9,7 +9,7 @@
 	<supportedVersions>
 	  <li>1.6</li>
 	</supportedVersions>
-	<modVersion>0.1</modVersion>
+	<modVersion>1.0</modVersion>
 	<modDependencies>
 		<li>
 			<packageId>brrainz.harmony</packageId>
@@ -19,6 +19,7 @@
     <li>
       <packageId>DVeL.CommonLibrary</packageId>
       <displayName>DVeL's Common Library</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/3809565166</steamWorkshopUrl>
     </li>
 	</modDependencies>
   <forceLoadAfter>

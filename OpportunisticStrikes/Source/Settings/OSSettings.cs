@@ -28,10 +28,10 @@ namespace OpportunisticStrikes.Settings
         public static bool ShowOSDPSinStats => showOSDPSinStats;
 
         protected static bool normalizeChanceToBaselineCooldown = normalizeChanceToBaselineCooldownDefault;
+        public static bool NormalizeChanceToBaselineCooldown => normalizeChanceToBaselineCooldown;
         protected static int baselineCooldownTicks = baselineCooldownTicksDefault;
         protected const int baselineCooldownTicksMin = 30;
         protected const int baselineCooldownTicksMax = 240;
-
 
         protected static List<MeleeAttackResult> interruptions;
         protected static bool interruptOnMiss = interruptOnMissDefault;
@@ -46,14 +46,13 @@ namespace OpportunisticStrikes.Settings
         protected static string oSVerbMark = OSVerbMarkDefault;
         public static string OSVerbMark => oSVerbMark;
 
-
         public const int ticksPerSecond = 60;
         protected float cachedWorkAreaHeight = 0;
         protected Vector2 currentScrollPosition = Vector2.zero;
         protected Listing_Standard listing = new Listing_Standard();
-        protected const float checkboxLabelPct = 0.5f;
+        protected const float checkboxLabelPct = 0.55f;
         protected const float sliderValueLabelPct = 0.04f;
-        protected const float sliderNamedValueLabelPct = 0.13f;
+        protected const float sliderNamedValueLabelPct = 0.15f;
         protected const float gapLineHeight = 12;
 
         #region Default Values
@@ -63,7 +62,7 @@ namespace OpportunisticStrikes.Settings
         protected const float verbChanceAtMelee20Default = 10;
         protected const bool ignoreTooFastAttacksDefault = true;
         protected const float tooFastMultDefault = 2;
-        protected const bool normalizeChanceToBaselineCooldownDefault = false;
+        protected const bool normalizeChanceToBaselineCooldownDefault = true;
         protected const int baselineCooldownTicksDefault = 120;
         protected const bool showOSDPSinStatsDefault = true;
         protected const bool interruptOnMissDefault = true;
@@ -149,7 +148,10 @@ namespace OpportunisticStrikes.Settings
             listing.CheckboxLabeled("IgnoreTooFastAttacksDescription".Translate(), ref ignoreTooFastAttacks, labelPct: checkboxLabelPct);
             
             if (ignoreTooFastAttacks) {
+                GameFont oldFont = Text.Font;
+                Text.Font = GameFont.Tiny;
                 listing.Label("WhatIsTooFastDescription".Translate());
+                Text.Font = oldFont;
                 tooFastMult = (float)Math.Round(listing.SliderLabeled("MultDescription".Translate() + $"{tooFastMult}", tooFastMult, 1, 10, sliderNamedValueLabelPct), 1);
                 UpdateTooFastAttacks();
             }
@@ -201,7 +203,10 @@ namespace OpportunisticStrikes.Settings
             listing.CheckboxLabeled("MarkOSVerbsInCombatLog".Translate(), ref markOSVerbsInCombatLog, labelPct: checkboxLabelPct);
             if (markOSVerbsInCombatLog)
             {
+                GameFont oldFont = Text.Font;
+                Text.Font = GameFont.Tiny;
                 listing.Label("VerbMarkInCombatLogComment".Translate());
+                Text.Font = oldFont;
                 string oSVerbMarkPrev = oSVerbMark;
                 oSVerbMark = listing.TextEntryLabeled("VerbMarkInCombatLog".Translate(), OSVerbMark, 0.25f);
                 oSVerbMark = OSVerbMark.Replace("[", "").Replace("]", "");
@@ -237,8 +242,6 @@ namespace OpportunisticStrikes.Settings
         {
             return ignoreTooFastAttacks && verb.verbProps.AdjustedCooldownTicks(verb, verb.CasterPawn) <= attackTooFastThreshold;
         }
-
-
 
         public void ResetToDefaults()
         {

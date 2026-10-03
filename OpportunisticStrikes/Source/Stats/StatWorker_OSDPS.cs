@@ -233,6 +233,9 @@ namespace OpportunisticStrikes.Stats
             float hitChanceFull = hitChanceAlmostFull + hcd * hitChance;
             float comboCooldown = OSSettings.TicksBetweenOSVerbs / (float)OSSettings.ticksPerSecond;
 
+            // Added "normalize chance to baseline cooldown's value" option after I was done with all the math here, and have zero desire to redo it. So lets hope that this will be close to actual numbers...
+            float verbChanceMult = AverageChanceNormalizedMult(verbEntries);
+            
             #region See GetValueUnfinalized
 
             //AverageDamage = v1Damage * (v1OSChance / VerbsTotal * (hitChance + hitChance2 + hitChance3) + v1Chance * (1 - v1OSChance) * hitChance)
@@ -248,7 +251,7 @@ namespace OpportunisticStrikes.Stats
             foreach (VerbEntry verbEntry in verbEntries) {
                 Verb verb = verbEntry.verb;
                 float verbSelectionChance = verbEntry.GetSelectionWeight(null);
-                float verbOSChance = verb.VerbChanceInCombo();
+                float verbOSChance = verb.VerbChanceInCombo() * verbChanceMult;
                 AverageDamage += verb.verbProps.AdjustedMeleeDamageAmount(verb, pawn)
                                  * (verbOSChance / VerbsTotal * hitChanceFull + verbSelectionChance * (1 - verbOSChance) * hitChance);
                 AverageCooldown += verb.verbProps.AdjustedCooldownTicks(verb, pawn) / (float)OSSettings.ticksPerSecond * verbSelectionChance;
@@ -269,6 +272,9 @@ namespace OpportunisticStrikes.Stats
             float hitChance = pawn.GetStatValue(StatDefOf.MeleeHitChance);
             float comboCooldown = OSSettings.TicksBetweenOSVerbs / (float)OSSettings.ticksPerSecond;
 
+            // Added "normalize chance to baseline cooldown's value" option after I was done with all the math here, and have zero desire to redo it. So lets hope that this will be close to actual numbers...
+            float verbChanceMult = AverageChanceNormalizedMult(verbEntries);
+
             #region See GetValueUnfinalized
 
             // AvgDamage = (v1Damage * (v1OSChance + v1Chance - v1Chance * v1OSChance)
@@ -284,7 +290,7 @@ namespace OpportunisticStrikes.Stats
             foreach (VerbEntry verbEntry in verbEntries) {
                 Verb verb = verbEntry.verb;
                 float verbSelectionChance = verbEntry.GetSelectionWeight(null);
-                float verbOSChance = verb.VerbChanceInCombo();
+                float verbOSChance = verb.VerbChanceInCombo() * verbChanceMult;
                 AverageDamage += verb.verbProps.AdjustedMeleeDamageAmount(verb, pawn)
                                  * (verbSelectionChance + verbOSChance - verbSelectionChance * verbOSChance);
                 AverageCooldown += verb.verbProps.AdjustedCooldownTicks(verb, pawn) / (float)OSSettings.ticksPerSecond * verbSelectionChance;
@@ -298,30 +304,45 @@ namespace OpportunisticStrikes.Stats
         public float CustomDraw(Rect rect, StatRequest request)
         {
             if (!(request.Thing is Pawn pawn && pawn.PawnCanOS())) return 0;
-            List<Verb> allMeleeVerbs = pawn.meleeVerbs
-                .GetUpdatedAvailableVerbsList(false)
+            List<VerbEntry> verbEntries = pawn.meleeVerbs.GetUpdatedAvailableVerbsList(false);
+            List<Verb> allMeleeVerbs = verbEntries
                 .Select(x => x.verb)
                 .Where(x => !(x is Verb_OpportunisticStrike))
                 .ToList();
 
+            // Added "normalize chance to baseline cooldown's value" option after I was done with all the math here, and have zero desire to redo it. So lets hope that this will be close to actual numbers...
+            float verbChanceMult = AverageChanceNormalizedMult(verbEntries);
             List<TableDataGetter<Verb>> tableDataGetterList = new List<TableDataGetter<Verb>>
             {
                 //new TableDataGetter<Verb>("Chance",  v => (v.VerbChanceInCombo() * 100).ToString("0.##") + "%"), // Somehow this line fries ReSharper brains...
-                new TableDataGetter<Verb>("Chance", v => $"{v.VerbChanceInCombo() * 100:0.##}%"),
-                new TableDataGetter<Verb>("Dmg",  v => v.verbProps.AdjustedMeleeDamageAmount(v,pawn).ToString("0.##")),
-                new TableDataGetter<Verb>("Tool",  v => v.tool != null ? v.tool.label : ""),
-                new TableDataGetter<Verb>("Source", v =>
+                new TableDataGetter<Verb>("ColumnHeader_Chance".Translate(), v => $"{v.VerbChanceInCombo() * verbChanceMult * 100:0.##}%"),
+                new TableDataGetter<Verb>("ColumnHeader_Damage".Translate(),  v => v.verbProps.AdjustedMeleeDamageAmount(v,pawn).ToString("0.##")),
+                new TableDataGetter<Verb>("ColumnHeader_Tool".Translate(),  v => v.tool != null ? v.tool.label : ""),
+                new TableDataGetter<Verb>("ColumnHeader_Source".Translate(), v =>
                 {
-                    if (v.HediffSource != null) return "Hediff: " + v.HediffSource.Label;
-                    if (v.EquipmentSource != null) return "Equipment: " + v.EquipmentSource.LabelNoParenthesisCap;
-                    if (v.DirectOwner is Pawn verbOwner) return "Body: " + verbOwner.RaceProps.body.LabelCap;
-                    return "Unknown";
+                    if (v.HediffSource != null) return "SourceType_Hediff".Translate() + ": " + v.HediffSource.Label;
+                    if (v.EquipmentSource != null) return "SourceType_Equipment".Translate() + ": " + v.EquipmentSource.LabelNoParenthesisCap;
+                    if (v.DirectOwner is Pawn verbOwner) return "SourceType_Body".Translate() + ": " + verbOwner.RaceProps.body.LabelCap;
+                    return "SourceType_Unknown".Translate();
                 })
             };
 
             Rect tableRect = Drawing.DrawTable(rect, allMeleeVerbs, tableDataGetterList);
+
             return tableRect.height;
             // return Drawing.DrawTable(rect, allMeleeVerbs, tableDataGetterList).height; // Also fries ReSharper brain...
+        }
+
+        protected float AverageChanceNormalizedMult(List<VerbEntry> verbEntries)
+        {
+            if (!OSSettings.NormalizeChanceToBaselineCooldown) return 1;
+            float avgCooldown = 0;
+            foreach (var verbEntry in verbEntries)
+            {
+                Verb verb = verbEntry.verb;
+                avgCooldown += verbEntry.GetSelectionWeight(null) * verb.verbProps.AdjustedCooldownTicks(verb, verb.CasterPawn);
+            }
+            return OSSettings.VerbChanceNormalizedMult((int)Math.Round(avgCooldown));
         }
     }
 }

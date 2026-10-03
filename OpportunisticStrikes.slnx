@@ -1,5 +1,4 @@
 <Solution>
   <Project Path="../DVeLsCommonLibrary/DVeLsCommonLibrary/DVeLsCommonLibrary.csproj" Id="c62f82f0-b241-43ed-aad8-4b60a704d7c9" />
-  <Project Path="../TestMod/TestMod/TestMod.csproj" Id="83f271db-7ddd-4732-9a3b-cf5bb34db13e" />
   <Project Path="OpportunisticStrikes/OpportunisticStrikes.csproj" Id="a02f11b6-b9a9-4584-8b51-d65b271fdfa7" />
 </Solution>

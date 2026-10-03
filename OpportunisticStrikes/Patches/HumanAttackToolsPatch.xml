@@ -6,7 +6,7 @@
 		<order>Prepend</order>
 		<value>
 			<li>
-				<label>melee skill</label>
+				<label>other verbs</label>
 				<capacities>
 					<li>DVeL_OS_OpportunisticStrikes</li>
 				</capacities>

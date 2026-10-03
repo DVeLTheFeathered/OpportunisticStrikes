@@ -7,20 +7,24 @@
 	<TicksBetweenOSVerbsDescription>Ticks between verbs in combo:</TicksBetweenOSVerbsDescription>
 	<TicksBetweenOSVerbsTooltip>One second is 60 ticks</TicksBetweenOSVerbsTooltip>
 
-  <VerbChanceDescription>Chance to add each individual verb to a combo based on Melee Skill:</VerbChanceDescription>
-  <VerbChanceTooltip>Actual chance will be linearly interpolated between these values</VerbChanceTooltip>
-  <VerbChanceAtMelee0Description>Level 0: </VerbChanceAtMelee0Description>
-  <VerbChanceAtMelee20Description>Level 20:</VerbChanceAtMelee20Description>
+	<VerbChanceDescription>Chance to add each individual verb to a combo based on Melee Skill:</VerbChanceDescription>
+	<VerbChanceTooltip>Actual chance will be linearly interpolated between these values</VerbChanceTooltip>
+	<VerbChanceAtMelee0Description>Level 0: </VerbChanceAtMelee0Description>
+	<VerbChanceAtMelee20Description>Level 20:</VerbChanceAtMelee20Description>
 
-  <IgnoreTooFastAttacksDescription>Disable "Opportunistic Strikes" for attacks that are too fast:</IgnoreTooFastAttacksDescription>
-  <WhatIsTooFastDescription>Attack is too fast if it has a lower cooldown than ("Ticks between verbs in combo" x Multiplier) </WhatIsTooFastDescription>
-  <MultDescription>Mult: </MultDescription>
+	<IgnoreTooFastAttacksDescription>Disable "Opportunistic Strikes" for attacks that are too fast:</IgnoreTooFastAttacksDescription>
+	<WhatIsTooFastDescription>Attack is "too fast" if it has a lower cooldown than ("Ticks between verbs in combo" x Multiplier) </WhatIsTooFastDescription>
+	<MultDescription>Multiplier: </MultDescription>
 
 	<ShowOSDPSinStats>Show OS DPS in pawn's "Stats" view: </ShowOSDPSinStats>
-
+	<!--&#13;&#10;-->
 	<NormalizeChanceToBaselineCooldown>Normalise OS chance to baseline cooldown: </NormalizeChanceToBaselineCooldown>
-	<NormalizationExplanation>Since OS chances are rolled per attack, faster weapons benefit disproportionally from OS strikes.&#13;&#10;This setting averages overall amount of OS all weapons do to baseline cooldown's value</NormalizationExplanation>
-  <BaselineCooldown>Baseline Cooldown in ticks (1 second is 60 ticks): </BaselineCooldown>
+	<NormalizationExplanation>Since OS chances are rolled per attack, faster weapons benefit disproportionally from OS strikes.
+
+This setting averages overall amount of OS all weapons do to baseline cooldown's value.
+
+Faster weapons will have a lot of low chances to trigger OS, and slow weapons will have small number of high chances</NormalizationExplanation>
+	<BaselineCooldown>Baseline Cooldown in ticks (1 second is 60 ticks): </BaselineCooldown>
 	
 	<YourAttackInterruptionsDescription>Which of your melee attack results interrupt your attack combo:</YourAttackInterruptionsDescription>
 	<InterruptionMiss>Miss</InterruptionMiss>
@@ -28,8 +32,8 @@
 	<InterruptionDeflect>Deflect</InterruptionDeflect>
 
 	<MarkOSVerbsInCombatLog>Opportunistic attacks should be marked in combat log</MarkOSVerbsInCombatLog>
-  <VerbMarkInCombatLogComment>It is better to avoid special symbols. "[]" are forbidden, because they have technical use</VerbMarkInCombatLogComment>
+	<VerbMarkInCombatLogComment>It is better to avoid special symbols. "[]" are forbidden, because they have technical use</VerbMarkInCombatLogComment>
 	<VerbMarkInCombatLog>Mark: </VerbMarkInCombatLog>
-  <ExampleCombatLogMessage>&lt;color=#D09B61FF&gt;Toni&lt;/color&gt; attacked &lt;color=#D09B61FF&gt;scyther&lt;/color&gt; with his &lt;color=#D09B61FF&gt;left fist&lt;/color&gt; but missed</ExampleCombatLogMessage>
+	<ExampleCombatLogMessage>&lt;color=#D09B61FF&gt;Toni&lt;/color&gt; attacked &lt;color=#D09B61FF&gt;scyther&lt;/color&gt; with his &lt;color=#D09B61FF&gt;left fist&lt;/color&gt; but missed</ExampleCombatLogMessage>
 
 </LanguageData>
