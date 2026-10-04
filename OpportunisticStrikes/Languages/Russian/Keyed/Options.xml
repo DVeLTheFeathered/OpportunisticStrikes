@@ -4,8 +4,7 @@
 	<OpportunisticStrikesModName>Ситуативные атаки</OpportunisticStrikesModName>
 	<NewValueReloadRequiredWarning>Необходима перезагрузка игры чтобы изменения вступили в силу</NewValueReloadRequiredWarning>
 
-	<TicksBetweenOSVerbsDescription>Такты между атаками в комбо: </TicksBetweenOSVerbsDescription>
-	<TicksBetweenOSVerbsTooltip>Одна секунда это 60 тактов</TicksBetweenOSVerbsTooltip>
+	<TicksBetweenOSVerbsDescription>Такты между атаками в комбо (1 секунда это 60 тактов):</TicksBetweenOSVerbsDescription>
 
 	<VerbChanceDescription>Шанс атаки участвовать в комбо, в зависимости от навыка ближнего боя:</VerbChanceDescription>
 	<VerbChanceTooltip>Шанс будет линейно интерполирован между этими величинами</VerbChanceTooltip>
@@ -35,5 +34,8 @@
 	<VerbMarkInCombatLogComment>Лучше избегать особых символов. "[]" запрещены, потому что используются во внутренних механиках Римворлда</VerbMarkInCombatLogComment>
 	<VerbMarkInCombatLog>Метка: </VerbMarkInCombatLog>
 	<ExampleCombatLogMessage>&lt;color=#D09B61FF&gt;Тони&lt;/color&gt; атаковал &lt;color=#D09B61FF&gt;жнеца&lt;/color&gt; своим &lt;color=#D09B61FF&gt;левым кулаком&lt;/color&gt;, но промахнулся</ExampleCombatLogMessage>
+
+	<ResetToDefaults>Настройки по умолчанию</ResetToDefaults>
+	<ClickToConfirm>Подтвердить</ClickToConfirm>
 
 </LanguageData>

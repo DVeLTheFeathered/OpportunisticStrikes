@@ -46,6 +46,10 @@ namespace OpportunisticStrikes.Settings
         protected static string oSVerbMark = OSVerbMarkDefault;
         public static string OSVerbMark => oSVerbMark;
 
+        protected static bool resetAllowed = false;
+        protected static float resetAllowedDuration = 5f;
+        protected static float timeAllowed;
+
         public const int ticksPerSecond = 60;
         protected float cachedWorkAreaHeight = 0;
         protected Vector2 currentScrollPosition = Vector2.zero;
@@ -121,8 +125,7 @@ namespace OpportunisticStrikes.Settings
 
             #region Ticks between combo verbs
 
-            listing.Label("TicksBetweenOSVerbsDescription".Translate(),
-                tipSignal: new TipSignal("TicksBetweenOSVerbsTooltip".Translate(), 0f));
+            listing.Label("TicksBetweenOSVerbsDescription".Translate());
             ticksBetweenOSVerbs = Convert.ToInt32(listing.SliderLabeled($"{ticksBetweenOSVerbs}", ticksBetweenOSVerbs, ticksBetweenOSVerbsMin, ticksBetweenOSVerbsMax, sliderValueLabelPct));
             if (ticksBetweenOSVerbs != ticksBetweenOSVerbsLoaded)
                 // TODO try "Best".Colorize(Color.green);
@@ -214,8 +217,32 @@ namespace OpportunisticStrikes.Settings
                 if (oSVerbMark != oSVerbMarkPrev) UpdateOSVerbMark();
             }
             listing.GapLine(gapLineHeight);
-            
+
             #endregion Mark OS in Combat Log
+
+            #region Reset to defaults
+
+            if (resetAllowed)
+            {
+                float timeRemaining = timeAllowed - Time.realtimeSinceStartup;
+                resetAllowed = timeRemaining > 0;
+                if (listing.ButtonText("ClickToConfirm".Translate() + $" ({(int)Math.Ceiling(timeRemaining)})", "", 0.25f))
+                {
+                    ResetToDefaults();
+                    resetAllowed = false;
+                }
+                    
+            }
+            else
+            {
+                if (listing.ButtonText("ResetToDefaults".Translate(), "", 0.25f))
+                {
+                    resetAllowed = true;
+                    timeAllowed = Time.realtimeSinceStartup + resetAllowedDuration;
+                }
+            }
+            
+            #endregion Reset to defaults
 
             listing.End();
             Widgets.EndScrollView();
@@ -245,24 +272,28 @@ namespace OpportunisticStrikes.Settings
 
         public void ResetToDefaults()
         {
-            // TODO check before release
+            // TODO Check before release
             ticksBetweenOSVerbs = ticksBetweenOSVerbsDefault;
-
+            
             verbChanceAtMelee0 = verbChanceAtMelee0Deault;
             verbChanceAtMelee20 = verbChanceAtMelee20Default;
 
             ignoreTooFastAttacks = ignoreTooFastAttacksDefault;
             tooFastMult = tooFastMultDefault;
             
+            showOSDPSinStats = showOSDPSinStatsDefault;
+
+            normalizeChanceToBaselineCooldown = normalizeChanceToBaselineCooldownDefault;
+            baselineCooldownTicks = baselineCooldownTicksDefault;
+            
             interruptOnMiss = interruptOnMissDefault;
             interruptOnDodge = interruptOnDodgeDefault;
             interruptOnDeflect = interruptOnDeflectDefault;
-            interruptOnMissPrev = interruptOnMiss;
-            interruptOnDodgePrev = interruptOnDodge;
-            interruptOnDeflectPrev = interruptOnDeflect;
-
+            
             markOSVerbsInCombatLog = markOSVerbsInCombatLogDefault;
             oSVerbMark = OSVerbMarkDefault;
+            
+            RecalculateSettings();
         }
 
         public override void ExposeData()

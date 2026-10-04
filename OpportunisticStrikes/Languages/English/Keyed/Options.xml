@@ -4,8 +4,7 @@
 	<OpportunisticStrikesModName>Opportunistic Strikes</OpportunisticStrikesModName>
 	<NewValueReloadRequiredWarning>Reloading Rimworld is required for new value to be applied</NewValueReloadRequiredWarning>
 	
-	<TicksBetweenOSVerbsDescription>Ticks between verbs in combo:</TicksBetweenOSVerbsDescription>
-	<TicksBetweenOSVerbsTooltip>One second is 60 ticks</TicksBetweenOSVerbsTooltip>
+	<TicksBetweenOSVerbsDescription>Ticks between verbs in combo (1 second is 60 ticks):</TicksBetweenOSVerbsDescription>
 
 	<VerbChanceDescription>Chance to add each individual verb to a combo based on Melee Skill:</VerbChanceDescription>
 	<VerbChanceTooltip>Actual chance will be linearly interpolated between these values</VerbChanceTooltip>
@@ -36,4 +35,7 @@ Faster weapons will have a lot of low chances to trigger OS, and slow weapons wi
 	<VerbMarkInCombatLog>Mark: </VerbMarkInCombatLog>
 	<ExampleCombatLogMessage>&lt;color=#D09B61FF&gt;Toni&lt;/color&gt; attacked &lt;color=#D09B61FF&gt;scyther&lt;/color&gt; with his &lt;color=#D09B61FF&gt;left fist&lt;/color&gt; but missed</ExampleCombatLogMessage>
 
+	<ResetToDefaults>Reset to defaults</ResetToDefaults>
+	<ClickToConfirm>Click to confirm</ClickToConfirm>
+	
 </LanguageData>
