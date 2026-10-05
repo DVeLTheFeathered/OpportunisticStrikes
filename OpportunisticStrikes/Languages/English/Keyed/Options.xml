@@ -4,9 +4,9 @@
 	<OpportunisticStrikesModName>Opportunistic Strikes</OpportunisticStrikesModName>
 	<NewValueReloadRequiredWarning>Reloading Rimworld is required for new value to be applied</NewValueReloadRequiredWarning>
 	
-	<TicksBetweenOSVerbsDescription>Ticks between verbs in combo (1 second is 60 ticks):</TicksBetweenOSVerbsDescription>
+	<TicksBetweenOSVerbsDescription>Ticks between attacks in combo (1 second is 60 ticks):</TicksBetweenOSVerbsDescription>
 
-	<VerbChanceDescription>Chance to add each individual verb to a combo based on Melee Skill:</VerbChanceDescription>
+	<VerbChanceDescription>Chance to add each individual attack to a combo based on Melee Skill:</VerbChanceDescription>
 	<VerbChanceTooltip>Actual chance will be linearly interpolated between these values</VerbChanceTooltip>
 	<VerbChanceAtMelee0Description>Level 0: </VerbChanceAtMelee0Description>
 	<VerbChanceAtMelee20Description>Level 20:</VerbChanceAtMelee20Description>
@@ -23,7 +23,7 @@
 This setting averages overall amount of OS all weapons do to baseline cooldown's value.
 
 Faster weapons will have a lot of low chances to trigger OS, and slow weapons will have small number of high chances</NormalizationExplanation>
-	<BaselineCooldown>Baseline Cooldown in ticks (1 second is 60 ticks): </BaselineCooldown>
+	<BaselineCooldown>Baseline cooldown in ticks (1 second is 60 ticks): </BaselineCooldown>
 	
 	<YourAttackInterruptionsDescription>Which of your melee attack results interrupt your attack combo:</YourAttackInterruptionsDescription>
 	<InterruptionMiss>Miss</InterruptionMiss>
