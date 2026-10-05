@@ -128,8 +128,7 @@ namespace OpportunisticStrikes.Settings
             listing.Label("TicksBetweenOSVerbsDescription".Translate());
             ticksBetweenOSVerbs = Convert.ToInt32(listing.SliderLabeled($"{ticksBetweenOSVerbs}", ticksBetweenOSVerbs, ticksBetweenOSVerbsMin, ticksBetweenOSVerbsMax, sliderValueLabelPct));
             if (ticksBetweenOSVerbs != ticksBetweenOSVerbsLoaded)
-                // TODO try "Best".Colorize(Color.green);
-                listing.Label("<color=red>" + "NewValueReloadRequiredWarning".Translate() + "</color>");
+                listing.Label("NewValueReloadRequiredWarning".Translate().Colorize(Color.red));
             listing.GapLine(gapLineHeight);
 
             #endregion Ticks between combo verbs
