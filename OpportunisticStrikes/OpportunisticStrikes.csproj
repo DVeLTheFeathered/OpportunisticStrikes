@@ -122,7 +122,7 @@
   </ItemGroup>
   <PropertyGroup>
     <DVeLsCommonLibraryProject>..\..\DVeLsCommonLibrary\DVeLsCommonLibrary\DVeLsCommonLibrary.csproj</DVeLsCommonLibraryProject>
-    <DVeLsCommonLibraryDll>$(SteamPath)\steamapps\workshop\content\294100\3809565166\Assemblies\DVeLsCommonLibrary.dll</DVeLsCommonLibraryDll>
+    <DVeLsCommonLibraryDll>$(SteamPath)\steamapps\workshop\content\294100\3813922686\Assemblies\DVeLsCommonLibrary.dll</DVeLsCommonLibraryDll>
   </PropertyGroup>
   <ItemGroup Condition="Exists('$(DVeLsCommonLibraryProject)')">
     <ProjectReference Include="$(DVeLsCommonLibraryProject)">
