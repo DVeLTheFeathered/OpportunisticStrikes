@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<LogEntryDef>
+		<defName>DVeL_OS_MeleeAttackComboLog</defName>
+		<iconDamaged>Things/Mote/BattleSymbols/Blood</iconDamaged>
+		<iconDamagedFromInstigator>Things/Mote/BattleSymbols/BloodTarget</iconDamagedFromInstigator>
+	</LogEntryDef>
+
+</Defs>

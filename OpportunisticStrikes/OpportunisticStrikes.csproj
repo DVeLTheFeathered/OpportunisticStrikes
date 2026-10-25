@@ -1,140 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <SteamPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)</SteamPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A02F11B6-B9A9-4584-8B51-D65B271FDFA7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpportunisticStrikes</RootNamespace>
-    <AssemblyName>OpportunisticStrikes</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>$(SteamPath)\steamapps\common\RimWorld\Mods\$(MSBuildProjectName)\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>$(SteamPath)\steamapps\common\RimWorld\Mods\$(MSBuildProjectName)\Assemblies\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(SteamPath)\steamapps\workshop\content\294100\2009463077\1.6\Assemblies\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>$(SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>$(SteamPath)\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\CachedValues.cs" />
-    <Compile Include="Source\Extensions.cs" />
-    <Compile Include="Source\HarmonyPatches\BattleLogEntry_MeleeCombat\GenerateGrammarRequestPatch.cs" />
-    <Compile Include="Source\HarmonyPatches\HarmonyInstance.cs" />
-    <Compile Include="Source\HarmonyPatches\Verb\TryCastNextBurstShotPatch.cs" />
-    <Compile Include="Source\HarmonyPatches\Verb_MeleeAttack\CreateCombatLogPatch.cs" />
-    <Compile Include="Source\HarmonyPatches\Verb_MeleeAttack\TryCastShotPatch.cs" />
-    <Compile Include="Source\MeleeAttackResult.cs" />
-    <Compile Include="Source\Settings\ModInit.cs" />
-    <Compile Include="Source\Settings\OSMod.cs" />
-    <Compile Include="Source\Settings\OSSettings.cs" />
-    <Compile Include="Source\Stance_CooldownWithFollowUp.cs" />
-    <Compile Include="Source\Stats\StatWorker_OSDPS.cs" />
-    <Compile Include="Source\Verb_OpportunisticStrike.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="About\About.xml" />
-    <Content Include="About\ModIcon.png" />
-    <Content Include="About\Preview.png" />
-    <Content Include="Defs\OpportunisticStrikes.xml" />
-    <Content Include="Defs\LogEntryDef.xml" />
-    <Content Include="Defs\Stats\OSDPS.xml" />
-    <Content Include="Languages\English\DefInjected\StatDef\OSDPS.xml" />
-    <Content Include="Languages\English\Keyed\Options.xml" />
-    <Content Include="Languages\English\DefInjected\ToolCapacityDef\OpportunisticStrikes.xml" />
-    <Content Include="Languages\English\Keyed\StatWorker_OSDPS.xml" />
-    <Content Include="Languages\Russian\DefInjected\StatDef\OSDPS.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Languages\Russian\Keyed\Options.xml" />
-    <Content Include="Languages\Russian\DefInjected\ToolCapacityDef\OpportunisticStrikes.xml" />
-    <Content Include="Languages\Russian\Keyed\StatWorker_OSDPS.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Patches\HumanAttackToolsPatch.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Textures\Preview.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Languages\English\DefInjected\ThingDef\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Update="About\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
-    <Content Update="Defs\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
-    <Content Update="Languages\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
-    <Content Update="Patches\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
-    <Content Update="Textures\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpportunisticStrikes.csproj.DotSettings" />
-  </ItemGroup>
-  <PropertyGroup>
-    <DVeLsCommonLibraryProject>..\..\DVeLsCommonLibrary\DVeLsCommonLibrary\DVeLsCommonLibrary.csproj</DVeLsCommonLibraryProject>
-    <DVeLsCommonLibraryDll>$(SteamPath)\steamapps\workshop\content\294100\3813922686\Assemblies\DVeLsCommonLibrary.dll</DVeLsCommonLibraryDll>
-  </PropertyGroup>
-  <ItemGroup Condition="Exists('$(DVeLsCommonLibraryProject)')">
-    <ProjectReference Include="$(DVeLsCommonLibraryProject)">
-      <Project>{C62F82F0-B241-43ED-AAD8-4B60A704D7C9}</Project>
-      <Name>DVeLsCommonLibrary</Name>
-	    <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup Condition="!Exists('$(DVeLsCommonLibraryProject)')">
-    <Reference Include="DVeLsCommonLibrary">
-      <HintPath>$(DVeLsCommonLibraryDll)</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<SteamPath>$(registry:HKEY_CURRENT_USER\SOFTWARE\Valve\Steam@SteamPath)</SteamPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<OutputPath>$(SteamPath)\steamapps\common\RimWorld\Mods\$(MSBuildProjectName)\Assemblies\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>$(SteamPath)\steamapps\workshop\content\294100\2009463077\1.7\Assemblies\0Harmony.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(SteamPath)\steamapps\common\RimWorld\Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(SteamPath)\steamapps\common\RimWorld\UnityStubs.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<!--<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(SteamPath)\steamapps\common\RimWorld\UnityEngine.CoreModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+			<HintPath>$(SteamPath)\steamapps\common\RimWorld\UnityEngine.IMGUIModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+			<HintPath>$(SteamPath)\steamapps\common\RimWorld\UnityEngine.TextRenderingModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>-->
+	</ItemGroup>
+
+	<PropertyGroup>
+		<DVeLsCommonLibraryProject>..\..\DVeLsCommonLibrary\DVeLsCommonLibrary\DVeLsCommonLibrary.csproj</DVeLsCommonLibraryProject>
+		<DVeLsCommonLibraryDll>$(SteamPath)\steamapps\workshop\content\294100\3813922686\Assemblies\DVeLsCommonLibrary.dll</DVeLsCommonLibraryDll>
+	</PropertyGroup>
+
+	<ItemGroup Condition="Exists('$(DVeLsCommonLibraryProject)')">
+		<ProjectReference Include="$(DVeLsCommonLibraryProject)">
+			<Private>false</Private>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="!Exists('$(DVeLsCommonLibraryProject)')">
+		<Reference Include="DVeLsCommonLibrary">
+			<HintPath>$(DVeLsCommonLibraryDll)</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="1.6\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="About\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="Defs\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="Languages\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="Patches\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="Textures\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+	</ItemGroup>
+
 </Project>

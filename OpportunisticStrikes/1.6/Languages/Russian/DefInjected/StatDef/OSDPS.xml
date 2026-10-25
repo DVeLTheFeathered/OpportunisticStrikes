@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<DVeL_OS_OSDPS.label>Урон/сек в ближнем бою (с СА)</DVeL_OS_OSDPS.label>
+	<DVeL_OS_OSDPS.description>То же, что и "урон/сек в ближнем бою", но с учётом урона от возможных ситуативных атак</DVeL_OS_OSDPS.description>
+
+</LanguageData>

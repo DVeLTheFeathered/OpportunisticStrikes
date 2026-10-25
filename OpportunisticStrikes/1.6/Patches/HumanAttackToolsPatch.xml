@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Human"]/tools</xpath>
+		<order>Prepend</order>
+		<value>
+			<li>
+				<label>other verbs</label>
+				<capacities>
+					<li>DVeL_OS_OpportunisticStrikes</li>
+				</capacities>
+				<power>1</power>
+				<cooldownTime>1</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0</chanceFactor>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>

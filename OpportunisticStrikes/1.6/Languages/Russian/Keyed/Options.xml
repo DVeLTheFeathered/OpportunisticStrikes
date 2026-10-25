@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<OpportunisticStrikesModName>Ситуативные атаки</OpportunisticStrikesModName>
+	<NewValueReloadRequiredWarning>Необходима перезагрузка игры чтобы изменения вступили в силу</NewValueReloadRequiredWarning>
+
+	<TicksBetweenOSVerbsDescription>Такты между атаками в комбо (1 секунда это 60 тактов):</TicksBetweenOSVerbsDescription>
+
+	<VerbChanceDescription>Шанс атаки участвовать в комбо, в зависимости от навыка ближнего боя:</VerbChanceDescription>
+	<VerbChanceTooltip>Шанс будет линейно интерполирован между этими величинами</VerbChanceTooltip>
+	<VerbChanceAtMelee0Description>Уровень 0:</VerbChanceAtMelee0Description>
+	<VerbChanceAtMelee20Description>Уровень 20:</VerbChanceAtMelee20Description>
+
+	<IgnoreTooFastAttacksDescription>Не использовать "Ситуативные атаки" после атак, которые слишком быстрые: </IgnoreTooFastAttacksDescription>
+	<WhatIsTooFastDescription>Атака "слишком быстрая" если её время восстановления (в тактах) меньше, чем ("Такты между атаками в комбо" * Множитель)</WhatIsTooFastDescription>
+	<MultDescription>Множитель: </MultDescription>
+
+	<ShowOSDPSinStats>Показывать "Урон/сек в ближнем бою (с СА)" во вкладке характеристик пешки: </ShowOSDPSinStats>
+
+	<NormalizeChanceToBaselineCooldown>Нормализовать шанс СА по базовому времени восстановления</NormalizeChanceToBaselineCooldown>
+	<NormalizationExplanation>Так как шанс СА проверяется при каждом ударе, быстрое оружие выигрывает гораздо сильнее от дополнительных атак.
+
+Эта настройка усредняет количество СА для всех видов оружия до значения при базовом времени восстановления.
+
+У быстрого оружия будет много пониженных шансов вызвать СА, а у медленного оружия - мало повышенных шансов.</NormalizationExplanation>
+	<BaselineCooldown>Базовое время восстановления в тактах (1 секунда это 60 тактов): </BaselineCooldown>
+
+	<YourAttackInterruptionsDescription>Какие из результатов СА атак прерывают комбо:</YourAttackInterruptionsDescription>
+	<InterruptionMiss>Промах</InterruptionMiss>
+	<InterruptionDodge>Уворот</InterruptionDodge>
+	<InterruptionDeflect>Отклонение бронёй</InterruptionDeflect>
+
+	<MarkOSVerbsInCombatLog>Помечать ситуативные атаки в боевом журнале: </MarkOSVerbsInCombatLog>
+	<VerbMarkInCombatLogComment>Лучше избегать особых символов. "[]" запрещены, потому что используются во внутренних механиках Римворлда</VerbMarkInCombatLogComment>
+	<VerbMarkInCombatLog>Метка: </VerbMarkInCombatLog>
+	<ExampleCombatLogMessage>&lt;color=#D09B61FF&gt;Тони&lt;/color&gt; атаковал &lt;color=#D09B61FF&gt;жнеца&lt;/color&gt; своим &lt;color=#D09B61FF&gt;левым кулаком&lt;/color&gt;, но промахнулся</ExampleCombatLogMessage>
+
+	<ResetToDefaults>Настройки по умолчанию</ResetToDefaults>
+	<ClickToConfirm>Подтвердить</ClickToConfirm>
+
+</LanguageData>

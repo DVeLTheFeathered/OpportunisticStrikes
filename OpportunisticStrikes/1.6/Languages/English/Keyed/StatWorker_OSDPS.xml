@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<ColumnHeader_Chance>Chance</ColumnHeader_Chance>
+	<ColumnHeader_Damage>Dmg</ColumnHeader_Damage>
+	<ColumnHeader_Tool>Tool</ColumnHeader_Tool>
+	<ColumnHeader_Source>Source</ColumnHeader_Source>
+
+	<SourceType_Hediff>Health</SourceType_Hediff>
+	<SourceType_Equipment>Equipment</SourceType_Equipment>
+	<SourceType_Body>Body</SourceType_Body>
+	<SourceType_Unknown>Unknown</SourceType_Unknown>
+</LanguageData>
