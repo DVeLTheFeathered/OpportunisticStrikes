@@ -63,6 +63,7 @@
 		<None Update="Languages\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
 		<None Update="Patches\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
 		<None Update="Textures\**\*" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
+		<None Update="LoadFolders.xml" CopyToOutputDirectory="PreserveNewest" TargetPath="..\%(Identity)" />
 	</ItemGroup>
 
 </Project>
